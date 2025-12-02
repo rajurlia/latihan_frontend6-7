@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan 1 - Show Image</title>
+    <style>
+      .card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        width: 250px;
+        border-radius: 8px;
+      }
+      .card img {
+        width: 100%;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script
+      crossorigin
+      src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+
+    <script type="text/babel">
+      // DATA: Sudah ditambahkan properti 'image'
+      const phoneData = [
+        {
+          name: "iPhone X",
+          price: 10000000,
+          discount: 50,
+          image: "https://placehold.co/300x200?text=iPhone+X",
+        },
+        {
+          name: "Oppo Find X",
+          price: 14000000,
+          discount: 30,
+          image: "https://placehold.co/300x200?text=Oppo+Find+X",
+        },
+        {
+          name: "Redmi Note X",
+          price: 5000000,
+          discount: 42,
+          image: "https://placehold.co/300x200?text=Redmi+Note",
+        },
+      ];
+
+      function Product({ name, price, discount = 0, image }) {
+        return (
+          <div className="card">
+            <img src={image} alt={name} />
+
+            <h2>{name}</h2>
+            {discount > 0 && (
+              <p>
+                <s>Rp {price}</s> ({discount}%)
+              </p>
+            )}
+            <p>
+              <b>
+                Rp{" "}
+                {parseInt(price) - parseInt(price) * (parseInt(discount) / 100)}
+              </b>
+            </p>
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <h1>Show Image</h1>
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {phoneData.map((phone, id) => (
+                <Product
+                  key={id}
+                  name={phone.name}
+                  price={phone.price}
+                  discount={phone.discount}
+                  image={phone.image}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("app"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
