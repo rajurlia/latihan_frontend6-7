@@ -1,2 +1,2 @@
-# latihan-6-dan-7
-tugas front end latihan 
+# latihan front end 
+tugas front end latihan 6 dan 7
